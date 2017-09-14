@@ -1,0 +1,17 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+/dwxmp-biz-facade/target/
+/dwxmp-biz-service/target/
+/dwxmp-biz-web/target/
+/dwxmp-common-config/target/
+/dwxmp-commons/target/
+/dwxmp-sys-facade/target/
+/dwxmp-sys-service/target/
+/dwxmp-sys-web/target/
