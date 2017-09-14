@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>dwxmp-common-parent</artifactId>
+        <groupId>cn.dwxmp.common</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../dwxmp-common-parent</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.dwxmp.facade</groupId>
+    <artifactId>dwxmp-sys-facade</artifactId>
+    <name>dwxmp-sys-facade</name>
+    <version>${dwxmp-sys-facade.version}</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.dwxmp.common</groupId>
+            <artifactId>dwxmp-commons</artifactId>
+            <version>${dwxmp-commons.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+    </dependencies>
+</project>
