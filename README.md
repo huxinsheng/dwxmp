@@ -25,3 +25,5 @@ server {
 }
 
 4、用户名密码:admin/111111
+
+5、http://localhost/进入页面
