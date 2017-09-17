@@ -29,8 +29,9 @@
             <version>${taobao.sdk.version}</version>
             <!--如果是用web服务器部署，请使用下面的配置，如果是使用jar -jar方式启动，请屏蔽下面配置，并在本地库注册该jar-->
             <!--mvn install:install-file -Dfile=taobao-sdk-20170317.jar -DgroupId=com.taobao -DartifactId=taobao-sdk -Dversion=20170317 -Dpackaging=jar -DgeneratePom=true-->
-            <!--<scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/taobao-sdk-20170317.jar</systemPath>-->
+            <!--mvn deploy:deploy-file -Dfile=taobao-sdk-20170317.jar -DgroupId=com.taobao -DartifactId=taobao-sdk -Dversion=20170317 -Dpackaging=jar -DgeneratePom=true -Durl=http://192.168.19.182:8081/nexus/content/repositories/thirdparty -DrepositoryId=thirdparty-->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/taobao-sdk-20170317.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>cn.dwxmp.common</groupId>
@@ -58,6 +59,17 @@
             <groupId>cn.dwxmp.facade</groupId>
             <artifactId>dwxmp-biz-facade</artifactId>
             <version>${dwxmp-biz-facade.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>cn.dwxmp.common</groupId>
+            <artifactId>dwxmp-common-config</artifactId>
+            <version>${dwxmp-common-config.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>

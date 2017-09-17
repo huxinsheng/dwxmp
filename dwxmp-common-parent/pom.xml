@@ -24,7 +24,17 @@
             <url>http://192.168.19.182:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
+	<modules>
+		<module>../dwxmp-common-config</module>
+		<module>../dwxmp-commons</module>
+		<module>../dwxmp-biz-facade</module>
+		<module>../dwxmp-biz-service</module>
+		<module>../dwxmp-biz-web</module>
+		
+		<module>../dwxmp-sys-facade</module>
+		<module>../dwxmp-sys-service</module>
+		<module>../dwxmp-sys-web</module>
+	</modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- common projects -->
@@ -37,10 +47,10 @@
         <dwxmp-biz-service.version>1.0-SNAPSHOT</dwxmp-biz-service.version>
         <dwxmp-biz-web.version>1.0-SNAPSHOT</dwxmp-biz-web.version>
         <!--system projects-->
-        <!-- 开发阶段配置文件位置, 发布时打包加参数：-P product -->
+        <!--&lt;!&ndash; 开发阶段配置文件位置, 发布时打包加参数：-P product &ndash;&gt;
         <sys.jdbc.config.path>classpath:config/jdbc.properties</sys.jdbc.config.path>
         <system.config.path>classpath:config/system.properties</system.config.path>
-        <thirdparty.config.path>classpath:config/thirdParty.properties</thirdparty.config.path>
+        <thirdparty.config.path>classpath:config/thirdParty.properties</thirdparty.config.path>-->
         <!-- 编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- spring版本号 -->
@@ -316,9 +326,9 @@
         <profile>
             <id>prd</id>
             <properties>
-                <sys.jdbc.config.path>classpath:prd/jdbc.properties</sys.jdbc.config.path>
-                <system.config.path>classpath:prd/system.properties</system.config.path>
-                <thirdParty.config.path>classpath:prd/thirdParty.properties</thirdParty.config.path>
+                <sys.jdbc.config.path>prd/jdbc.properties</sys.jdbc.config.path>
+                <system.config.path>prd/system.properties</system.config.path>
+                <thirdParty.config.path>prd/thirdParty.properties</thirdParty.config.path>
             </properties>
             <build>
                 <resources>
@@ -334,14 +344,56 @@
                         <directory>src/main/resources</directory>
                     </resource>
                 </resources>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.tomcat.maven</groupId>
+                            <artifactId>tomcat7-maven-plugin</artifactId>
+                            <version>2.2</version>
+                            <executions>
+                                <execution>
+                                    <id>run-war-only</id>
+                                    <phase>pre-integration-test</phase>
+                                    <goals>
+                                        <goal>run-war-only</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <warDirectory>target/${project.name}</warDirectory>
+                                <path>/</path>
+                                <contextReloadable>true</contextReloadable>
+                                <uriEncoding>UTF-8</uriEncoding>
+                                <port>${server.port}</port>
+                                <url>http://localhost:${server.port}/manager</url>
+                                <server>tomcat</server>
+                                <username>admin</username>
+                                <password>admin</password>
+                                <contextReloadable>true</contextReloadable>
+                                <systemProperties>
+                                    <webapps>
+                                        <webapp>
+                                            <groupId>${project.name}</groupId>
+                                            <artifactId>${project.name}</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>${project.packaging}</type>
+                                            <asWebapp>true</asWebapp>
+                                            <contextPath>/</contextPath>
+                                        </webapp>
+                                    </webapps>
+                                </systemProperties>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
         <profile>
             <id>init</id>
             <properties>
-                <sys.jdbc.config.path>classpath:init/jdbc.properties</sys.jdbc.config.path>
-                <system.config.path>classpath:init/system.properties</system.config.path>
-                <thirdParty.config.path>classpath:init/thirdParty.properties</thirdParty.config.path>
+                <sys.jdbc.config.path>init/jdbc.properties</sys.jdbc.config.path>
+                <system.config.path>init/system.properties</system.config.path>
+                <thirdParty.config.path>init/thirdParty.properties</thirdParty.config.path>
             </properties>
             <build>
                 <resources>
@@ -362,9 +414,9 @@
         <profile>
             <id>test</id>
             <properties>
-                <sys.jdbc.config.path>classpath:test/jdbc.properties</sys.jdbc.config.path>
-                <system.config.path>classpath:test/system.properties</system.config.path>
-                <thirdParty.config.path>classpath:test/thirdParty.properties</thirdParty.config.path>
+                <sys.jdbc.config.path>test/jdbc.properties</sys.jdbc.config.path>
+                <system.config.path>test/system.properties</system.config.path>
+                <thirdParty.config.path>test/thirdParty.properties</thirdParty.config.path>
             </properties>
             <build>
                 <finalName>${project.name}</finalName>
@@ -381,10 +433,60 @@
                         <directory>src/main/resources</directory>
                     </resource>
                 </resources>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.tomcat.maven</groupId>
+                            <artifactId>tomcat7-maven-plugin</artifactId>
+                            <version>2.2</version>
+                            <executions>
+                                <execution>
+                                    <id>run-war-only</id>
+                                    <phase>pre-integration-test</phase>
+                                    <goals>
+                                        <goal>run-war-only</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <warDirectory>target/${project.name}</warDirectory>
+                                <path>/</path>
+                                <contextReloadable>true</contextReloadable>
+                                <uriEncoding>UTF-8</uriEncoding>
+                                <port>${server.port}</port>
+                                <url>http://localhost:${server.port}/manager</url>
+                                <server>tomcat</server>
+                                <username>admin</username>
+                                <password>admin</password>
+                                <contextReloadable>true</contextReloadable>
+                                <systemProperties>
+                                    <webapps>
+                                        <webapp>
+                                            <groupId>${project.name}</groupId>
+                                            <artifactId>${project.name}</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>${project.packaging}</type>
+                                            <asWebapp>true</asWebapp>
+                                            <contextPath>/</contextPath>
+                                        </webapp>
+                                    </webapps>
+                                </systemProperties>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
         <profile>
             <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sys.jdbc.config.path>dev/jdbc.properties</sys.jdbc.config.path>
+                <system.config.path>dev/system.properties</system.config.path>
+                <thirdParty.config.path>dev/thirdParty.properties</thirdParty.config.path>
+            </properties>
             <build>
                 <finalName>${project.name}</finalName>
                 <resources>

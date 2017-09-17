@@ -9,8 +9,8 @@
 	<bean class="cn.dwxmp.core.util.PropertiesUtil">
 		<property name="locations">
 			<list>
-				<value>${sys.jdbc.config.path}</value>
-				<value>${system.config.path}</value>
+				<value>classpath:${sys.jdbc.config.path}</value>
+				<value>classpath${system.config.path}</value>
 			</list>
 		</property>
 		<property name="properties">

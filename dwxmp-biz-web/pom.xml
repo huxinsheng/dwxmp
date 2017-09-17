@@ -19,8 +19,6 @@
 
     <properties>
         <server.port>8090</server.port>
-        <log.path>${log.path}</log.path>
-        <log.level>${log.level}</log.level>
     </properties>
 
     <dependencies>
