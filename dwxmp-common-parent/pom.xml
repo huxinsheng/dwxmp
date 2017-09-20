@@ -16,12 +16,12 @@
         <repository>
             <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
-            <url>http://192.168.19.182:8081/nexus/content/repositories/releases/</url>
+            <url>http://192.168.19.177:8081/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>nexus-snapshots</id>
             <name>Nexus Snapshot Repository</name>
-            <url>http://192.168.19.182:8081/nexus/content/repositories/snapshots/</url>
+            <url>http://192.168.19.177:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 	<modules>
@@ -328,7 +328,7 @@
             <properties>
                 <sys.jdbc.config.path>prd/jdbc.properties</sys.jdbc.config.path>
                 <system.config.path>prd/system.properties</system.config.path>
-                <thirdParty.config.path>prd/thirdParty.properties</thirdParty.config.path>
+                <thirdParty.config.path>prd/thirdParty</thirdParty.config.path>
             </properties>
             <build>
                 <resources>
@@ -393,7 +393,7 @@
             <properties>
                 <sys.jdbc.config.path>init/jdbc.properties</sys.jdbc.config.path>
                 <system.config.path>init/system.properties</system.config.path>
-                <thirdParty.config.path>init/thirdParty.properties</thirdParty.config.path>
+                <thirdParty.config.path>init/thirdParty</thirdParty.config.path>
             </properties>
             <build>
                 <resources>
@@ -416,7 +416,7 @@
             <properties>
                 <sys.jdbc.config.path>test/jdbc.properties</sys.jdbc.config.path>
                 <system.config.path>test/system.properties</system.config.path>
-                <thirdParty.config.path>test/thirdParty.properties</thirdParty.config.path>
+                <thirdParty.config.path>test/thirdParty</thirdParty.config.path>
             </properties>
             <build>
                 <finalName>${project.name}</finalName>
@@ -485,7 +485,7 @@
             <properties>
                 <sys.jdbc.config.path>dev/jdbc.properties</sys.jdbc.config.path>
                 <system.config.path>dev/system.properties</system.config.path>
-                <thirdParty.config.path>dev/thirdParty.properties</thirdParty.config.path>
+                <thirdParty.config.path>dev/thirdParty</thirdParty.config.path>
             </properties>
             <build>
                 <finalName>${project.name}</finalName>

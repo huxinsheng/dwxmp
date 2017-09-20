@@ -10,7 +10,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:${sys.jdbc.config.path}</value>
-				<value>classpath${system.config.path}</value>
+				<value>classpath:${system.config.path}</value>
 			</list>
 		</property>
 		<property name="properties">
@@ -26,6 +26,11 @@
 				<value>db.reader.password</value>
 				<value>db.writer.password</value>
 			</array>
+		</property>
+	</bean>
+	<bean id="THIRDPARTY" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>${thirdParty.config.path}</value>
 		</property>
 	</bean>
 	<!-- 扫描注解 -->

@@ -29,6 +29,11 @@
 			</array>
 		</property>
 	</bean>
+	<bean id="THIRDPARTY" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>${thirdParty.config.path}</value>
+		</property>
+	</bean>
 	<!-- 扫描注解 -->
 	<context:component-scan base-package="cn.dwxmp">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
